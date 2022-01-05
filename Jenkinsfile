@@ -1,12 +1,10 @@
 import groovy.json.JsonSlurperClassic
-
 def jsonParse(def json) {
     new groovy.json.JsonSlurperClassic().parseText(json)
 }
 pipeline {
     agent any
     stages {
-
         stage("paso 1"){
             steps {
                 script {
@@ -28,13 +26,7 @@ pipeline {
                 }
             }
         }
-        stage("paso 3"){
-            steps {
-                script {
-                sh "echo 'Build .Jar!'"
-                }
-            }
-        }
+      
     }
     post {
         always {
@@ -43,9 +35,9 @@ pipeline {
         success {
             sh "echo 'fase success'"
         }
-
         failure {
             sh "echo 'fase failure'"
         }
     }
 }
+Contraer
