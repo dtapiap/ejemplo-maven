@@ -12,7 +12,7 @@ pipeline {
                checkout(
                         [$class: 'GitSCM',
                         branches: [[name: "jenkinsfile-as-code" ]],
-                        userRemoteConfigs: [[url: 'https://github.com/dtapiap/ejemplo-maven/blob/jenkins/']]])
+                        userRemoteConfigs: [[url: 'https://github.com/dtapiap/ejemplo-maven.git']]])
             }
         }
         stage("Paso 2: Compliar"){
