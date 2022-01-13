@@ -5,7 +5,7 @@ pipeline {
             steps {
                 script {
                 sh "echo 'Compile Code!'"
-                // Run Maven on a Unix agent test5.
+                // Run Maven on a Unix agent test6.
                 sh "mvn clean compile -e"
                 }
             }
