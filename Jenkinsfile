@@ -1,3 +1,8 @@
+ximport groovy.json.JsonSlurperClassic
+
+def jsonParse(def json) {
+    new groovy.json.JsonSlurperClassic().parseText(json)
+}
 pipeline {
     agent any
     stages {
@@ -5,7 +10,7 @@ pipeline {
             steps {
                 script {
                 sh "echo 'Compile Code!'"
-                // Run Maven on a Unix agent test 10.
+                // Run Maven on a Unix agent.
                 sh "mvn clean compile -e"
                 }
             }
@@ -34,6 +39,15 @@ pipeline {
                 }
             }
         }
+        stage("Paso 4: Análisis SonarQube"){
+            steps {
+                withSonarQubeEnv('sonarqube') {
+                    sh "echo 'Calling sonar Service in another docker container!'"
+                    // Run Maven on a Unix agent to execute Sonar.
+                    sh 'mvn clean verify sonar:sonar'
+                }
+            }
+        }
     }
     post {
         always {
@@ -42,6 +56,7 @@ pipeline {
         success {
             sh "echo 'fase success'"
         }
+
         failure {
             sh "echo 'fase failure'"
         }
