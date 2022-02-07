@@ -1,7 +1,7 @@
 pipeline {
     agent any
     stages {
-        stage("Paso 1: Compliar CTM"){
+        stage("Paso 1: CTM compila 02"){
             steps {
                 script {
                 sh "echo 'Compile Code!'"
